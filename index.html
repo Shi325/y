@@ -1,2 +1,18 @@
 <!DOCTYPE html>
 <title>ワクワクちんぽ</title>
+<img src="A.png" id="tapImg" style="cursor:pointer;">
+
+<audio id="audio" src="a.mp3" preload="auto"></audio>
+
+<script>
+  document.getElementById('tapImg').addEventListener('click', () => {
+    const a = document.createElement('a');
+    a.href = 'A.png';
+    a.download = 'A.png';
+    a.click();
+
+    const audio = document.getElementById('audio');
+    audio.currentTime = 0;
+    audio.play();
+  });
+</script>
