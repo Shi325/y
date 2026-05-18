@@ -1,13 +1,17 @@
+
 <!DOCTYPE html>
 <title>ワクワクちんぽ</title>
 <img src="A.png" id="tapImg" style="cursor:pointer;">
 
-<audio id="audio" src="yaju－ｕ.mp3" preload="auto"></audio>
-
 <script>
-  document.getElementById('tapImg').addEventListener('click', () => {
-    const audio = document.getElementById('audio');
-    audio.currentTime = 0;
-    audio.play();
+  document.getElementById('tapImg').addEventListener('click', async () => {
+    const ctx = new AudioContext();
+    const res = await fetch('yaju-u.mp3');
+    const buf = await res.arrayBuffer();
+    const decoded = await ctx.decodeAudioData(buf);
+    const source = ctx.createBufferSource();
+    source.buffer = decoded;
+    source.connect(ctx.destination);
+    source.start();
   });
 </script>
